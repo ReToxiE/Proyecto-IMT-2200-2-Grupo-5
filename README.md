@@ -1,6 +1,6 @@
 # Proyecto IMT-2200
 
-## Estructura
+## Estructura del repositorio
 
 - `data/`: Archivos de datos (raw o procesados).
 - `notebooks/`: Notebooks con análisis exploratorio y modelamiento.
@@ -18,3 +18,6 @@ python -m venv .venv
 pip install -r requirements.txt
 jupyter notebook notebooks/analisis_final.ipynb
 ```
+
+### Uso de AI
+En el repositorio, fuera de las declaraciones de uso de AI en el notebook .ipynb, se ha utilizado también para plantear la estructura básica de este proyecto, creando las carpetas y archivos iniciales, sin contenido alguno.
