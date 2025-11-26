@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Proyecto Cs de Datos</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+
+    <header>
+      <div class="header-inner">
+        <div class="brand">Grupo 31 - IMT-2200 - Proyecto de Cs de Datos</div>
+         <!-- Anchors para navegación del header -->
+        <nav class="nav-links">
+          <a href="#inicio">Inicio</a>
+          <a href="#contexto">Contexto</a>
+          <a href="#etl">ETL</a>
+          <a href="#eda">Resultados</a>
+          <a href="#discusion">Discusión</a>
+        </nav>
+      </div>
+    </header>
+
+
+    <main>
+
+      <section id="inicio" class="hero">
+        <p>Proyecto de Ciencia de Datos</p>
+        <h1>Análisis de los Casinos en Chile, con énfasis en el jugador promedio</h1>
+        <p>
+          Estudio sobre los juegos de apuestas de los Casinos, con énfasis en el jugador
+          promedio. Se incluyen análisis relacionados a los ingresos, variabilidad y comportamiento
+          de los casinos regulados por la Superintendencia de Casinos de Juego (SCJ).
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#eda">Resultados</a>
+        </div>
+      </section>
+
+
+
+
+
+      <section id="contexto">
+        <h2>Contexto y Motivación</h2>
+        <p>
+          La Superintendencia de Casinos de Juego (SCJ) publica mensualmente los
+          ingresos brutos de los casinos autorizados. En este proyecto buscamos
+          analizar esos datos, para entender mejor la industria del juego en Chile.
+          Hemos analizado desde las máquinas de azar hasta los ingresos por bingo, por ejemplo.
+          Para cumplir con el propósito de enfocar el estudio de los datos con énfasis en el 
+          jugador promedio, hemos incluido datos relacionados al retorno a jugadores y la
+          oferta de juegos en cada casino. También, hemos representado visualmente los Datos
+          para poder extraer conclusiones relevantes, y así entender mejor el comportamiento
+          de los casinos y juegos de azar en Chile. Se han incluido visualizaciones que indican
+          las brechas entre establecimientos, la concentración de ingresos y la variabilidad mensual
+          de diferentes tipos de métricas. 
+        </p>
+        <div class="triple-row">
+          <article class="info-card">
+            <h3>Problema</h3>
+            <p>
+              Explicar la concentración de ingresos, cuantificar las brechas existentes
+              entre casinos, y evaluar la calidad de los datos, posibles problemas éticos a futuro.
+
+            </p>
+          </article>
+          <article class="info-card">
+            <h3>Objetivos</h3>
+            <p>
+              Estimar magnitud y variabilidad de ingresos en los Casinos,
+              identificar vacíos de información y evaluar la oferta de juegos reportada
+              mediante, por ejemplo, las máquinas de azar y el retorno a jugadores.
+            </p>
+          </article>
+          <article class="info-card">
+            <h3>Datos</h3>
+            <p>
+              - Boletines estadísticos de la SCJ con archivos CSV semi-estructurados: ingresos, visitas y retorno de máquinas,
+              entre otros específicos relacionados al boletín estadífcilo de la SCJ.
+            </p>
+          </article>
+        </div>
+      </section>
+
+
+
+
+
+
+
+
+
+      <section id="etl">
+        <h2>Metodología y ETL</h2>
+        <p>
+          Durante el proceso de ETL hubieron varios desafíos de limpieza, como 
+          por ejemplo, engabezados repetidos, múltiples tablas por archivo y
+          y formanos a veces insonstente, sobre todo hubo que tratar los valores
+          sin información útil en los conjuntos de datos de manera cuidadosa, ya que 
+          no hacerlo, o hacerlo mal, podría ocasionar sesgos en los análisis posteriores.
+
+          Implementamos un flujo de limpieza robusto con el lenguaje de programación Python
+          para resolver problemas con encabezados de los datos información repetida,
+          múltiples tablas por archivo y formatos inconsistentes en los archivos.
+        </p>
+
+        <div class="triple-row" style="display:flex;gap:1.25rem;align-items:stretch;">
+
+          <article class="info-card">
+            <h3>Segmentación</h3>
+            <p>
+              Hemos usado la función <code>split_blocks</code> para separar cada archivo CSV en
+              múltiples sub-tablas lógicas basadas en separadores, por ejemplo.
+            </p>
+          </article>
+
+          <article class="info-card">
+            <h3>Normalización</h3>
+            <p>
+
+              Detección automática de encabezados reales y estandarización de
+              nombres de columnas con <code>clean_column_names</code>.
+            </p>
+          </article>
+
+          <article class="info-card">
+            <h3>Conversión</h3>
+            <p>
+              Transformación de datos numéricos formateados como texto (con
+              puntos y comas) a tipos float válidos para análisis.
+            </p>
+          </article>
+
+
+        </div>
+        <div class="ai-disclosure" style="margin-top: 2rem; padding: 1.5rem; background: rgba(108, 27, 42, 0.2); border: 1px solid var(--wine-500); border-radius: 12px;">
+          <h3 style="color: var(--wine-400); font-size: 1.1rem; margin-bottom: 0.8rem;">IMPORTANTE: Declaración de Uso de IA Generativa</h3>
+          <p style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 1rem;">
+            Declaramos explícitamente el uso de modelos de lenguaje (GPT-5-Codex y Gemini Flash) para ayudar en ciertas celdas. Específicamente:
+          </p>
+          <ul style="list-style: disc; padding-left: 1.5rem; color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">
+            <li><strong>Ingeniería de Datos:</strong> Generación de las funciones <code>split_blocks</code> y <code>load_tables</code> para la lectura de archivos CSV con múltiples bloques y encabezados irregulares.</li>
+            <li><strong>Conversión de Datos:</strong> Asistencia en la lógica de conversión de tipos de datos (<code>coerce_numeric</code>) para manejar formatos de moneda chilena.</li>
+            <li><strong>Visualización:</strong> Generación de bucles para el etiquetado automático de valores sobre las barras en gráficos de <code>matplotlib</code> y <code>seaborn</code>.</li>
+            <li><strong>Cálculo de Métricas:</strong> Implementación de fórmulas vectorizadas para el cálculo del Coeficiente de Variación (CV) mensual y por casino.</li>
+            <li><strong>Este propio sitio web:</strong> Aquí, hemos usado un agente para poder crear los styles.css en su mayoría,
+              como también así algo de la estructura HTML de las páginas, ciertas cards tienen los atributos class
+              para el CSS generados por IA.</li>
+          </ul>
+        </div>
+
+        <h3 style="margin-top: 2.5rem; margin-bottom: 1.5rem; color: var(--gold-400); border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.5rem;">
+          Preguntas de Investigación formuladas y Hallazgos
+        </h3>
+        
+        <div class="questions-container">
+          <div style="margin-bottom: 1.5rem">
+            <h4 style="color: var(--gray-200); margin-bottom: 0.4rem">
+              1. ¿Cuál es el retorno real promedio a jugadores en máquinas de azar?
+            </h4>
+            <p style="color: var(--text-muted)">
+              Parcialmente: el CSV <code style="color: var(--gold-400)">RetornoMaquinas</code> permite comparar el payout observado por tipo de juego y casino, identificando cuáles retornan más dinero al jugador. Aun así, falta una traza completa de premios pagados para, hilando las ganancias de los jugadores, estimar el retorno efectivo del jugador promedio.
+            </p>
+          </div>
+
+          <div style="margin-bottom: 1.5rem">
+            <h4 style="color: var(--gray-200); margin-bottom: 0.4rem">
+              2. ¿Cuál es el monto total apostado en juegos de azar?
+            </h4>
+            <p style="color: var(--text-muted)">
+              Tampoco se puede responder con este dataset, ya que no se registran montos apostados, únicamente ingresos brutos.
+            </p>
+          </div>
+
+          <div style="margin-bottom: 1.5rem">
+            <h4 style="color: var(--gray-200); margin-bottom: 0.4rem">
+              3. ¿Cuáles son los ingresos brutos de juegos de azar?
+            </h4>
+            <p style="color: var(--text-muted)">
+              Monticello Grand Casino y el Casino Rinconada superan los 30 mil millones de CLP en 2023, mientras varios casinos regionales se mantienen por debajo de los 6 mil millones.
+            </p>
+          </div>
+
+          <div style="margin-bottom: 1.5rem">
+            <h4 style="color: var(--gray-200); margin-bottom: 0.4rem">
+              4. ¿Cuál es la oferta de juegos distribuida por casino?
+            </h4>
+            <p style="color: var(--text-muted)">
+              Sí: los CSV <code style="color: var(--gold-400)">PosicionesJuegos</code> y <code style="color: var(--gold-400)">RetornoMaquinas</code> enumeran posiciones de juego y características de cada máquina, lo que permite describir la oferta disponible en cada operador.
+            </p>
+          </div>
+
+          <div style="margin-bottom: 1.5rem">
+            <h4 style="color: var(--gray-200); margin-bottom: 0.4rem">
+              5. ¿Cuál es el resumen de la industria en el periodo de estudio?
+            </h4>
+            <p style="color: var(--text-muted)">
+              Sí: el coeficiente de variación mensual supera 120% en octubre y agosto, los ingresos están concentrados en dos operadores y los nulos se limitan a enero-marzo (11,1%) y a los totales (5,6%).
+            </p>
+          </div>
+
+          <div style="margin-bottom: 1.5rem">
+            <h4 style="color: var(--gray-200); margin-bottom: 0.4rem">
+              6. ¿Qué similitudes presentan algunos casinos? (Extra)
+            </h4>
+            <p style="color: var(--text-muted)">
+              Con los datos disponibles solo comparamos variabilidad mensual y participación relativa; faltan variables adicionales para un análisis más profundo.
+            </p>
+          </div>
+
+          <div style="margin-bottom: 1.5rem">
+            <h4 style="color: var(--gray-200); margin-bottom: 0.4rem">
+              7. ¿Cuál es el origen de las máquinas de azar? (Extra)
+            </h4>
+            <p style="color: var(--text-muted)">
+              Podemos responder parcialmente esta pregunta en base al CSV <code style="color: var(--gold-400)">ParqueMaquinas</code>, que detalla el fabricante y procedencia, durante el analisis exploratorio de datos, pudimos darnos cuenta que la mayoría de las máquinas provienen de Estados Unidos, habiendo varios fabricantes como BALLY, SPIELO y WMS que dominan el mercado chileno de máquinas de azar, con mas de un 18% de participación cada uno.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="eda">
+        <h2>Análisis Exploratorio (EDA)</h2>
+
+        <h3>Calidad de Datos</h3>
+        <p>
+          Detectamos un patrón de valores faltantes significativo en los
+          primeros meses del año, en enero y marzo, por lo que tuvimos que,
+          optar por otras estrategias, como la imputación o trabajar solo con
+          totales anuales.
+        </p>
+        <div class="chart-container" style="text-align: center">
+          <img
+            src="../figures/missing_ratio.png"
+            alt="Gráfico de valores faltantes"
+            style="
+              max-width: 100%;
+              border-radius: 12px;
+              margin-top: 1rem;
+              box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            "
+          />
+        </div>
+
+        <h3 style="margin-top: 2rem">Distribución de Ingresos</h3>
+        <p>
+          La distribución de ingresos totales muestra una fuerte asimetría,
+          indicando que unos pocos casinos concentran la mayor parte del mercado
+          nacional, aquí se puede apreciar en la gráfica.
+        </p>
+        <div class="chart-container" style="text-align: center">
+          <img
+            src="../figures/hist_Total ($).png"
+            alt="Histograma de Ingresos Totales"
+            style="
+              max-width: 100%;
+              border-radius: 12px;
+              margin-top: 1rem;
+              box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            "
+          />
+        </div>
+
+        <h3 style="margin-top: 2rem">Variabilidad Mensual</h3>
+        <p>
+          El Coeficiente de Variación (CV) nos permite ver qué tan estables son
+          los ingresos para los casinos a lo largo del año, nos dice qué tan volátiles son. Analizamos el CV para 
+          que sea por mes, o por cada casino. Observamos mayor volatilidad en ciertos meses y 
+          casinos específicos, y podemos ver patrones de comportamiento estacionales en la
+          industria de los juegos de apuestas.
+        </p>
+        <div class="triple-row">
+          <div class="chart-item">
+            <h4 style="color: var(--gold-400); margin-bottom: 0.5rem">
+              CV por Mes
+            </h4>
+            <img
+              src="../figures/cv_mensual.png"
+              alt="CV Mensual"
+              style="
+                width: 100%;
+                border-radius: 12px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+              "
+            />
+          </div>
+          <div class="chart-item">
+            <h4 style="color: var(--gold-400); margin-bottom: 0.5rem">
+              CV por Casino
+            </h4>
+            <img
+              src="../figures/cv_por_casino.png"
+              alt="CV por Casino"
+              style="
+                width: 100%;
+                border-radius: 12px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+              "
+            />
+          </div>
+        </div>
+
+        <h3 style="margin-top: 2rem">Participación de Mercado</h3>
+        <p>
+          Esta visualización muestra un mapa de calor que muestra la participación relativa de
+          cada mes en el total anual por casino, revelando patrones estacionales de participación.
+        </p>
+        <div class="chart-container" style="text-align: center">
+          <img
+            src="../figures/participacion_mensual_casinos.png"
+            alt="Heatmap Participación"
+            style="
+              max-width: 100%;
+              border-radius: 12px;
+              margin-top: 1rem;
+              box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            "
+          />
+        </div>
+      </section>
+
+      <section id="discusion">
+        <h2>Discusión y Conclusiones del estudio</h2>
+        
+        <article class="info-card">
+          <h3>Interpretación General</h3>
+          <p>
+            Existe una alta concentración de ingresos en casinos específicos, pero la variabilidad
+            mensual de los ingresos sugiere estacionalidad en ciertos establecimientos, posiblemente
+            turísticos, mientras que otros mantienen flujos menos irregulares. El Coeficiente
+            de Variación (CV) revela que octubre y agosto son los meses más volátiles.
+          </p>
+
+          <h3>Limitaciones y cosas a tener en cuenta</h3>
+            El modelo es correlacional y no causal, 
+            osea que solo nos limitamos a saber las relaciones y no el porque es así, y esto 
+            ocurre por la poca cantidad de variables con las que se dispone a hacer este modelo 
+            (las que creímos eran importantes anteriormente). Además el número de observaciones es pequeño 
+            (se consta con 17 casinos), y existen factores externos no incluidos en el dataset 
+            que podrían influir en los ingresos, asi como los que ya hay en algunos csv 
+            (solo que estan como tablas adicionales, habiendo 2 tablas en un mismo csv). 
+            Por lo tanto, aunque los resultados son útiles como mini-análisis 
+            (esto es mas que nada porque solo nos limitamos a los casinos de chile, y del año 2012),
+             por lo que deben interpretarse con cautela para evitar una generalización. 
+             De todas formas, las variables seleccionadas son bastante intuitivas, ya que puede ser 
+             algo obvio el hecho de que por ejemplo, las visitas tienen tanta relación con los
+              ingresos, pero es util para los casinos saber esto, ya que gracias a esto sabemos 
+              en lo que deberían de enfocarse para mayor ganancia, y quizas dejar el bingo de
+               lado (Pensandolo bien, una visita no necesariamente implica que hubo un gasto).
+          </p>
+
+          <h3>Próximos pasos</h3>
+          <h4 style="margin-top: 1rem; color: var(--gold-400);">Próximos pasos</h4>
+          <p>
+            Incorporar datos actualizados, cruzar información con indicadores
+            macroeconómicos (IMACEC) y modelar la demanda de juegos con modelos de inteligencia
+            artificial más potentes, posiblemente incluyendo variables demográficas y de comportamiento.
+            Nuestro objetivo fue parcial, nos falta mucho camino para poder encontrar
+            la mejor estrategia de apuesta para el jugador promedio, así que 
+            futuros análisis podrían enfocarse en entender mejor el comportamiento
+            del jugador promedio en los casinos de Chile.
+          </p>
+        </article>
+
+        <h3 style="margin-top: 2.5rem; margin-bottom: 1rem; color: var(--gold-400);">
+          Notas extra: Análisis de Regresión y Correlación
+        </h3>
+        <p style="margin-bottom: 1.5rem; color: var(--text-muted);">
+          <strong>¿Para que se hizo la regresión lineal y la matriz de correlación?</strong><br>
+          La regresión lineal se utilizó para evaluar cómo las variables de los casinos (como lo son las visitas, retorno de máquinas, impuestos y número de posiciones de juego) se relacionan con sus ingresos brutos anuales, asi como también hicimos una matriz de correlación. Para esto se construyó un dataset final unificando la información de los CSV y normalizando los valores numéricos para poder trabajar con ellos. Una vez formado el dataset, se entrenó un modelo de regresión lineal múltiple usando un 80% de los datos para entrenamiento y el restante 20% para prueba, y lo que obtuvimos como se puede observar fue un R² de aproximadamente 0.98, que para neustro contexto, esto nos dice que el modelo explica casi el 98% de la variabilidad de los ingresos. Respecto a el RMSE, obtuvimos un valor de al rededor de 240 millones, equivalente a cerca del 3.6% del ingreso promedio del conjunto de prueba, por lo que el error es coherente.
+        </p>
+
+        <div class="grid">
+          <article class="info-card" style="border-color: var(--wine-500);">
+            <h3 style="color: var(--wine-400);">Bingo en la matriz de correlación</h3>
+            <p>
+              Los resultados muestran que los juegos más asociadas a los ingresos son 
+              principalmente las maquinas, mesas y el parque, asi como el total de visitas,
+               mientras que bingo tiene menor efecto, esto nos podría decir varias cosas, 
+               se podría decir que los bingos al haber siempre un ganador no es que genere
+                tantas ganancias, o también puede ser por la poca cantidad de Bingos 
+                que se han hecho comparado a las Maquinas y al parque, esto parece tener
+                mucho más sentido.
+            </p>
+            <div style="margin-top: 1rem; text-align: center;">
+              <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.5rem;">Matriz de Correlación (Variables vs Ingresos)</p>
+              <img
+                src="../figures/heatmap_corr.png"
+                alt="Matriz de Correlación"
+                style="
+                  max-width: 100%;
+                  border-radius: 8px;
+                  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+                  border: 1px solid rgba(255,255,255,0.1);
+                "
+              />
+            </div>
+          </article>
+          
+          <article class="info-card">
+            <h3>Otras decisiones importantes</h3>
+            <p>
+              En lugar de trabajar con los datos mes a mes, optamos por usar los totales 
+              anuales por casino, ya que nuestro objetivo es comparar el desempeño global 
+              de cada casino en un año, y no estudiar la evolución temporal mes a mes. 
+              Además, al agregar por año se reduce el ruido estacional y se se toma en 
+              cuenta en el analisis la independencia de cada casino (que los casinos son 
+              distintos), ya que cada fila del modelo corresponde a un casino distinto 
+              (valga la redundancia). En si, trabajar con datos mensuales habría requerido 
+              modelos más complejos de panel o series de tiempo.
+            </p>
+            <h4 style="margin-top: 1rem; font-size: 1rem; color: var(--gold-400);">¿Por qué usamos desde 0 una función habiendo otra hecha?</h4>
+            <p style="font-size: 0.9rem;">
+              Con total honestidad, esta parte del notebook se decidió hacer desde 0 debido a unos fallos en las lecturas con respecto a lo que nos interesa con respecto a la regresión lineal, ya que las funciones anteriores se hicieron para obtener todos los datos, esta parte se hizo solo en base a lo que nos importaba para la regresión lineal.
+            </p>
+          </article>
+        </div>
+
+        <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(255,255,255,0.03); border-radius: 12px;">
+          <h4 style="color: var(--gray-200); margin-bottom: 0.5rem;">¿Habría sido mejor tener mas datos?</h4>
+          <p style="font-size: 0.95rem; color: var(--text-muted);">
+            Si, totalmente. Ignorando el hecho de que esta regresión lineal solo se hizo en base al año 2012 en su totalidad y no como linea temporal mes a mes, si hubiesemos disponido de años anteriores o posteriores, podríamos ver el desarrollo/cambio año tras año en mejor escala, aunque para lo que seleccionamos está totalmente correcto. También pudimos haber encontrado mas datos de casinos de otros paises, para ver si estas conclusiones eran las mismas que con chile.
+          </p>
+        </div>
+      </section>
+      <section id="referencias">
+        <h2>6. Referencias</h2>
+        <p>
+          Se ha utilizado como LLM GPT-5-Codex y Gemini Flash, en su mayoría está su uso citado en las celdas de MarkDown, como también en comentarios de las funciones o líneas de código generadas con esa herramienta, pero en su mayoría se ha utilizado para solucionar errores en los tipos de datos.
+        </p>
+        <ul style="list-style: none; padding: 0; margin-top: 1rem; color: var(--text-muted);">
+          <li style="margin-bottom: 0.8rem;">
+            <strong style="color: var(--gold-400);">Repositorio del proyecto en GitHub:</strong> <a href="https://github.com/ReToxiE/Proyecto-IMT-2200-2-Grupo-5" target="_blank" style="color: var(--wine-300);">https://github.com/ReToxiE/Proyecto-IMT-2200-2-Grupo-5</a>
+          </li>
+          <li style="margin-bottom: 0.8rem;">
+            <strong style="color: var(--gold-400);">Boletín estadístico de la Superintendencia de Casinos de Juego (a noviembre de 2012):</strong> <a href="https://datos.gob.cl/dataset/3985/resource/febd82fb-2b87-4cef-aebf-46ede878a769" target="_blank" style="color: var(--wine-300);">Link al dataset</a>
+          </li>
+          <li style="margin-bottom: 0.8rem;">
+            <strong style="color: var(--gold-400);">Wikipedia - Casino:</strong> <a href="https://es.wikipedia.org/wiki/Casino" target="_blank" style="color: var(--wine-300);">https://es.wikipedia.org/wiki/Casino</a>
+          </li>
+          <li style="margin-bottom: 0.8rem;">
+            <strong style="color: var(--gold-400);">Artículo 1 - Los ingresos de los casinos de Chile crecen un 2 % en mayo:</strong> <a href="https://www.gamingintelligence.com/es/finanzas/balances/68865-chile-mayo/" target="_blank" style="color: var(--wine-300);">Link al artículo</a>
+          </li>
+          <li style="margin-bottom: 0.8rem;">
+            <strong style="color: var(--gold-400);">Artículo 2 - Crece el mercado del juego en Chile:</strong> <a href="https://www.theclinic.cl/2024/10/16/poker-con-dinero-real-en-su-version-online/" target="_blank" style="color: var(--wine-300);">Link al artículo</a>
+          </li>
+          <li style="margin-bottom: 0.8rem;">
+            <strong style="color: var(--gold-400);">Estudio - “Radiografía de la apuesta en Chile al 2023, ”Caracterización del jugador online”:</strong> <a href="https://accj.cl/wp-content/uploads/2023/06/ppt-estudio-radiografia-apuesta-online-2023.pdf" target="_blank" style="color: var(--wine-300);">Link al estudio</a>
+          </li>
+          <li style="margin-bottom: 0.8rem;">
+            <strong style="color: var(--gold-400);">Superintendencia de Casinos de Juego - Resultados de casinos:</strong> <a href="https://www.scj.cl" target="_blank" style="color: var(--wine-300);">https://www.scj.cl</a>
+          </li>
+        </ul>
+
+        <h3 style="margin-top: 2rem; color: var(--gold-400);">Autores</h3>
+        <ul style="list-style: none; padding: 0; color: var(--text-muted);">
+          <li>GitHub - Matías V. <a href="https://github.com/aesmatias" target="_blank" style="color: var(--wine-300);">https://github.com/aesmatias</a></li>
+          <li>GitHub - Carlos R. <a href="https://github.com/Ex-0m" target="_blank" style="color: var(--wine-300);">https://github.com/Ex-0m</a></li>
+          <li>GitHub - Benjamín U. <a href="https://github.com/ReToxiE" target="_blank" style="color: var(--wine-300);">https://github.com/ReToxiE</a></li>
+          <li>GitHub - Brian M. <a href="https://github.com/brianmunozaylwin" target="_blank" style="color: var(--wine-300);">https://github.com/brianmunozaylwin</a></li>
+        </ul>
+      </section>
+    </main>
+
+    <footer class="footer">
+      © 2025 · Grupo 5 · Proyecto IMT-2200 · Introducción a la Ciencia de Datos
+    </footer>
+  </body>
+</html>
