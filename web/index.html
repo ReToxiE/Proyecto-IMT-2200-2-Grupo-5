@@ -57,7 +57,7 @@
           las brechas entre establecimientos, la concentración de ingresos y la variabilidad mensual
           de diferentes tipos de métricas. 
         </p>
-        <div class="triple-row" style="display: flex; flex-direction: column; gap: 1.5rem;">
+        <div class="triple-row">
           <article class="info-card">
             <h3>Problema</h3>
             <p>
@@ -83,6 +83,11 @@
           </article>
         </div>
       </section>
+
+
+
+
+
 
 
 
@@ -140,10 +145,9 @@
             <li><strong>Conversión de Datos:</strong> Asistencia en la lógica de conversión de tipos de datos (<code>coerce_numeric</code>) para manejar formatos de moneda chilena.</li>
             <li><strong>Visualización:</strong> Generación de bucles para el etiquetado automático de valores sobre las barras en gráficos de <code>matplotlib</code> y <code>seaborn</code>.</li>
             <li><strong>Cálculo de Métricas:</strong> Implementación de fórmulas vectorizadas para el cálculo del Coeficiente de Variación (CV) mensual y por casino.</li>
-            <li><strong>Este propio sitio web:</strong> Aquí, hemos usado un agente para poder crear los styles.css en su mayoría (con grandes cambios personales),
+            <li><strong>Este propio sitio web:</strong> Aquí, hemos usado un agente para poder crear los styles.css en su mayoría,
               como también así algo de la estructura HTML de las páginas, ciertas cards tienen los atributos class
-              para el CSS generados por IA. Prácticamente todo el proyecto ha sido redactado manualmente en las explicaciones y análisis.
-            </li>
+              para el CSS generados por IA.</li>
           </ul>
         </div>
 
@@ -229,7 +233,7 @@
         </p>
         <div class="chart-container" style="text-align: center">
           <img
-            src="figures/missing_ratio.png"
+            src="../figures/missing_ratio.png"
             alt="Gráfico de valores faltantes"
             style="
               max-width: 100%;
@@ -244,14 +248,11 @@
         <p>
           La distribución de ingresos totales muestra una fuerte asimetría,
           indicando que unos pocos casinos concentran la mayor parte del mercado
-          nacional. El histograma siguiente resume la dispersión anual y ya está
-          expresado en millones de pesos chilenos para dimensionar rápidamente
-          cuánto vende cada operador. La curva suavizada evidencia la cola
-          derecha pronunciada: muy pocos casinos superan los 30 mil millones.
+          nacional, aquí se puede apreciar en la gráfica.
         </p>
         <div class="chart-container" style="text-align: center">
           <img
-            src="figures/hist_total_.png"
+            src="../figures/hist_Total ($).png"
             alt="Histograma de Ingresos Totales"
             style="
               max-width: 100%;
@@ -276,7 +277,7 @@
               CV por Mes
             </h4>
             <img
-              src="figures/cv_mensual.png"
+              src="../figures/cv_mensual.png"
               alt="CV Mensual"
               style="
                 width: 100%;
@@ -290,7 +291,7 @@
               CV por Casino
             </h4>
             <img
-              src="figures/cv_por_casino.png"
+              src="../figures/cv_por_casino.png"
               alt="CV por Casino"
               style="
                 width: 100%;
@@ -305,16 +306,10 @@
         <p>
           Esta visualización muestra un mapa de calor que muestra la participación relativa de
           cada mes en el total anual por casino, revelando patrones estacionales de participación.
-          Como se ve en la leyenda (la barra de la derecha del gráfico), los colores más oscuros indican
-          una mayor participación de ingresos ese mes específico, mientras que los colores más claros indican
-          una menor participación. Esto nos ayuda a identificar qué casinos tienen ingresos más
-          estables a lo largo del año entero, y cuáles tienen una mayor dependencia de ciertos meses o,
-          visto de otra manera, qué casinos son más estacionales. También podemos ver que para
-          algunos casinos hay datos faltantes, lo que se ve en blanco en el gráfico.
         </p>
         <div class="chart-container" style="text-align: center">
           <img
-            src="figures/participacion_mensual_casinos.png"
+            src="../figures/participacion_mensual_casinos.png"
             alt="Heatmap Participación"
             style="
               max-width: 100%;
@@ -327,22 +322,21 @@
 
         <h3 style="margin-top: 2rem">Oferta de máquinas y ranking de ingresos</h3>
         <p>
-          Para completar el análisis exploratorio, presentamos dos visualizaciones adicionales,
-          la primera resume la distribución de máquinas por fabricante, y la segunda ordena a los casinos
-          por los ingresos anuales que generan.
+          Para complementar el diagnóstico mostramos dos vistas simples: la primera resume
+          qué fabricantes dominan el parque de máquinas y la segunda ordena a los casinos
+          según sus ingresos anuales. Ambas ayudan a dimensionar rápidamente quién oferta
+          la mayor cantidad de equipos y qué operadores concentran la mayor recaudación.
         </p>
         <div class="triple-row" style="display: flex; flex-direction: column; gap: 1.5rem;">
           <article class="info-card">
             <h4 style="color: var(--gold-400); margin-bottom: 0.5rem;">Fabricantes con más presencia</h4>
             <p>
-              Bally, Spielo y WMS aportan la mayor cantidad de máquinas instaladas (aunque no por mucho en relación
-              a los lugares de más abajo), lo que
-              confirma que el mercado depende de un puñado de proveedores internacionales, ya que los últimos lugares
-              apenas tienen un porcentaje significativo de máquinas en los casinos de Chile.
+              Bally, Spielo y WMS aportan la mayor cantidad de máquinas instaladas, lo que
+              confirma que el mercado depende de un puñado de proveedores internacionales.
             </p>
             <div style="text-align: center;">
               <img
-                src="figures/cantidad_maquinas_por_fabricante.png"
+                src="../figures/cantidad_maquinas_por_fabricante.png"
                 alt="Distribución por fabricante"
                 style="max-width: 100%; border-radius: 12px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);"
               />
@@ -351,12 +345,12 @@
           <article class="info-card">
             <h4 style="color: var(--gold-400); margin-bottom: 0.5rem;">Ingresos anuales por casino</h4>
             <p>
-              Monticello y Rinconada tienen una mayor cantidad de ingresos anuales en comparación con otros casinos.
-              La mayoría de los casinos regionales se mantiene muy por debajo de los 10 o 20 mil millones de CLP.
+              Monticello y Rinconada lideran por amplio margen, mientras la mayoría de los
+              casinos regionales se mantiene muy por debajo de los 10 mil millones de CLP.
             </p>
             <div style="text-align: center;">
               <img
-                src="figures/metric_Casinos de Juego.png"
+                src="../figures/metric_Casinos de Juego.png"
                 alt="Ranking de ingresos por casino"
                 style="max-width: 100%; border-radius: 12px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);"
               />
@@ -367,27 +361,14 @@
 
       <section id="discusion">
         <h2>Discusión y Conclusiones del estudio</h2>
-         <style>
-          .info-card h3, .info-card h4 {
-            margin-bottom: 0.5rem;
-          }
-          .info-card p {
-            margin-bottom: 1rem;
-          }
-         </style>
+        
         <article class="info-card">
           <h3>Interpretación General</h3>
           <p>
             Existe una alta concentración de ingresos en casinos específicos, pero la variabilidad
             mensual de los ingresos sugiere estacionalidad en ciertos establecimientos, posiblemente
             turísticos, mientras que otros mantienen flujos menos irregulares. El Coeficiente
-            de Variación (CV) revela que octubre y agosto son los meses más volátiles. Por ejemplo,
-            vemos en la visualización de "CV por Casino" que los casinos Termas de Chillán y
-            Dreams Coyhaique presentan una alta volatilidad, lo que podría estar relacionado con su
-            ubicación geográfica y la dependencia del turismo estacional, donde en ciertas fechas
-            del año, como vacaciones o festividades, la afluencia de visitantes puede aumentar
-            o disminuir drásticamente, afectando sus ingresos mensuales de manera más fluctuante en
-            comparación con los demás casinos.
+            de Variación (CV) revela que octubre y agosto son los meses más volátiles.
           </p>
 
           <h3>Limitaciones y cosas a tener en cuenta</h3>
@@ -409,6 +390,7 @@
           </p>
 
           <h3>Próximos pasos</h3>
+          <h4 style="margin-top: 1rem; color: var(--gold-400);">Próximos pasos</h4>
           <p>
             Incorporar datos actualizados, cruzar información con indicadores
             macroeconómicos (IMACEC) y modelar la demanda de juegos con modelos de inteligencia
@@ -428,7 +410,7 @@
           La regresión lineal se utilizó para evaluar cómo las variables de los casinos (como lo son las visitas, retorno de máquinas, impuestos y número de posiciones de juego) se relacionan con sus ingresos brutos anuales, asi como también hicimos una matriz de correlación. Para esto se construyó un dataset final unificando la información de los CSV y normalizando los valores numéricos para poder trabajar con ellos. Una vez formado el dataset, se entrenó un modelo de regresión lineal múltiple usando un 80% de los datos para entrenamiento y el restante 20% para prueba, y lo que obtuvimos como se puede observar fue un R² de aproximadamente 0.98, que para neustro contexto, esto nos dice que el modelo explica casi el 98% de la variabilidad de los ingresos. Respecto a el RMSE, obtuvimos un valor de al rededor de 240 millones, equivalente a cerca del 3.6% del ingreso promedio del conjunto de prueba, por lo que el error es coherente.
         </p>
 
-        <div class="grid" style="display: flex; flex-direction: column; gap: 1.5rem;">
+        <div class="grid">
           <article class="info-card" style="border-color: var(--wine-500);">
             <h3 style="color: var(--wine-400);">Bingo en la matriz de correlación</h3>
             <p>
@@ -443,7 +425,7 @@
             <div style="margin-top: 1rem; text-align: center;">
               <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.5rem;">Matriz de Correlación (Variables vs Ingresos)</p>
               <img
-                src="figures/heatmap_corr.png"
+                src="../figures/heatmap_corr.png"
                 alt="Matriz de Correlación"
                 style="
                   max-width: 100%;
@@ -458,23 +440,22 @@
           <article class="info-card">
             <h3>Otras decisiones importantes</h3>
             <p>
-              En lugar de trabajar con los datos mes a mes, optamos por usar los totales 
-              anuales por casino, ya que nuestro objetivo es comparar el desempeño global 
-              de cada casino en un año, y no estudiar la evolución temporal mes a mes. 
-              Además, al agregar por año se reduce el ruido estacional y se se toma en 
-              cuenta en el analisis la independencia de cada casino (que los casinos son 
-              distintos), ya que cada fila del modelo corresponde a un casino distinto 
-              (valga la redundancia). En si, trabajar con datos mensuales habría requerido 
+              En lugar de trabajar con los datos mes a mes, optamos por usar los totales
+              anuales por casino, ya que nuestro objetivo es comparar el desempeño global
+              de cada casino en un año, y no estudiar la evolución temporal mes a mes.
+              Además, al agregar por año se reduce el ruido estacional y se se toma en
+              cuenta en el analisis la independencia de cada casino (que los casinos son
+              distintos), ya que cada fila del modelo corresponde a un casino distinto
+              (valga la redundancia). En si, trabajar con datos mensuales habría requerido
               modelos más complejos de panel o series de tiempo.
             </p>
-            <h4 style="margin-top: 1rem; font-size: 1rem; color: var(--gold-400);">¿Cómo depuramos los totales antes de comparar?</h4>
-            <p>
-              Antes de comparar casinos, limpiamos cada archivo y quitamos las filas que ya venían
-              resumidas como "otal anual" o "Promedio dólar". Si las dejábamos así, algunos ingresos
-              se contaban dos veces y era imposible saber cuánto aportaba realmente cada casino al cálculo total.
-              Al quedarnos solo con las filas que representan a un casino en particular, ponemos a
-              todos en la misma métrica: una fila, un casino, un total anual comparable. Esa depuración
-              es la base de todo lo que mostramos después en las visualizaciones finales!
+            <h4 style="margin-top: 1rem; font-size: 1rem; color: var(--gold-400);">¿Por qué usamos desde 0 una función habiendo otra hecha?</h4>
+            <p style="font-size: 0.9rem;">
+              Antes de graficar o modelar, limpiamos cada archivo y eliminamos las filas que venían
+              resumidas como “Total anual” o “Promedio dólar”. Dejarlas significaba contar dos veces
+              los mismos ingresos y mezclar peras con manzanas. Con la depuración dejamos una fila por
+              casino con su total anual real, lo que nos permitió comparar establecimientos en igualdad
+              de condiciones.
             </p>
           </article>
         </div>
@@ -487,7 +468,7 @@
         </div>
       </section>
       <section id="referencias">
-        <h2>Referencias</h2>
+        <h2>6. Referencias</h2>
         <p>
           Se ha utilizado como LLM GPT-5-Codex y Gemini Flash, en su mayoría está su uso citado en las celdas de MarkDown, como también en comentarios de las funciones o líneas de código generadas con esa herramienta, pero en su mayoría se ha utilizado para solucionar errores en los tipos de datos.
         </p>
